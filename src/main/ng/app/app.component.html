@@ -1,0 +1,22 @@
+<h1>Список пользователей</h1>
+<input type="button" class="btn btn-default" value="Добавить" (click)="addUser()" />
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<td>Id</td>
+			<td>Имя</td>
+			<td>Возраст</td>
+			<td></td>
+			<td></td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let user of users">
+			<ng-template [ngTemplateOutlet]="loadTemplate(user)"
+						[ngTemplateOutletContext]="{ $implicit: user}"></ng-template>
+		</tr>
+	</tbody>
+</table>
+<div>{{ststusMessage}}</div>
+
+<!-- Template for read -->

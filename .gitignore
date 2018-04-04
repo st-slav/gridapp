@@ -27,4 +27,4 @@ target/
 .settings/
 src/main/webapp/
 node/
-node-modules/
+node_modules/
