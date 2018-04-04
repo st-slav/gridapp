@@ -25,3 +25,6 @@ target/
 .classpath
 .project
 .settings/
+src/main/webapp/
+node/
+node-modules/
