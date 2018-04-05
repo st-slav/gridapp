@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
 
     // редактирование пользователя
     editUser(user: User) {
-        this.editedUser = new User(user.Id, user.userName, user.Age);
+        this.editedUser = new User(user.Id, user.Name, user.Age);
     }
 
     // загружаем один из двух шаблонов
