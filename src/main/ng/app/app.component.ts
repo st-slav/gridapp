@@ -16,10 +16,10 @@ export class AppComponent implements OnInit {
     @ViewChild('readOnlyTemplate') readOnlyTemplate: TemplateRef<any>;
     @ViewChild('editTemplate') editTemplate: TemplateRef<any>;
 
-    private editedUser: User;
-    private users: Array<User>;
-    private isNewRecord: boolean;
-    private statusMessage: string;
+    editedUser: User;
+    users: Array<User>;
+    isNewRecord: boolean;
+    statusMessage: string;
 
     constructor(private api: UserService) {
         this.users = new Array<User>();
@@ -38,19 +38,19 @@ export class AppComponent implements OnInit {
 
     // добавление пользователя
     addUser() {
-        this.editedUser = new User(0, "", 0);
+        this.editedUser = new User(null, "", 0);
         this.users.push(this.editedUser);
         this.isNewRecord = true;
     }
 
     // редактирование пользователя
     editUser(user: User) {
-        this.editedUser = new User(user.Id, user.Name, user.Age);
+        this.editedUser = new User(user.id, user.name, user.age);
     }
 
     // загружаем один из двух шаблонов
     loadTemplate(user: User) {
-        if (this.editedUser && this.editedUser.Id == user.Id) {
+        if (this.editedUser && this.editedUser.id == user.id) {
             return this.editTemplate;
         } else {
             return this.readOnlyTemplate;
@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
             this.isNewRecord = false;
         } else {
             // изменяем пользователя
-            this.api.updateUser(this.editedUser.Id, this.editedUser).subscribe(data => {
+            this.api.updateUser(this.editedUser.id, this.editedUser).subscribe(data => {
                 this.statusMessage = 'Данные успешно обновлены';
                 this.loadUsers();
             });
@@ -88,7 +88,7 @@ export class AppComponent implements OnInit {
 
     // удаление пользователя
     deleteUser(user: User) {
-        this.api.deleteUser(user.Id).subscribe(data => {
+        this.api.deleteUser(user.id).subscribe(data => {
             this.statusMessage = 'Данные успешно удалены';
             this.loadUsers();
         });

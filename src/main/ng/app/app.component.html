@@ -21,9 +21,9 @@
 
 <!-- Template for read -->
 <ng-template #readOnlyTemplate let-user>
-	<td>{{user.Id}}</td>
-	<td>{{user.Name}}</td>
-	<td>{{user.Age}}</td>
+	<td>{{user.id}}</td>
+	<td>{{user.name}}</td>
+	<td>{{user.age}}</td>
 	<td>
 		<input type="button" value="Изменить" class="btn btn-default" (click)="editUser(user)" />
 	</td>
@@ -33,20 +33,20 @@
 </ng-template>
 
 <!--  template for edit -->
-<ng-template>
+<ng-template #editTemplate let-user>
 	<td>
-		<input type="text" />
+		<input type="text" [(ngModel)]="editedUser.id" class="form-control" disabled readonly />
 	</td>
 	<td>
-		<input type="text" />
+		<input type="text" [(ngModel)]="editedUser.name" class="form-control" />
 	</td>
 	<td>
-		<input type="text" />
+		<input type="text" [(ngModel)]="editedUser.age" class="form-control" />
 	</td>
 	<td>
 		<input type="button" value="Сохранить" class="btn btn-success" (click)="saveUser()" />
 	</td>
 	<td>
-		<input type="text" value="Отмена" class="btn btn-warning" (click)="cancel()" />
+		<input type="button" value="Отмена" class="btn btn-warning" (click)="cancel()" />
 	</td>
 </ng-template>
